@@ -1,0 +1,108 @@
+/* Global styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: aliceblue;
+}
+
+/* Header styles */
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 36px;
+    position: relative;
+    left: -100px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation-name: slideIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+      }
+      @keyframes slideIn {
+        from {
+          left: -100px;
+        }
+        to {
+          left: 0;
+        }
+      }
+      
+
+
+/* Table styles */
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      
+
+
+th {
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Delete button styles */
+
+.delete-button {
+    background-color: #c0392b;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #e74c3c;
+}
+
+/* Form styles */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.delete-button:hover {
+    background-color: red;
+    color: white;
+  }
+  

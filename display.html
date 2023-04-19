@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+    <link rel="stylesheet" href="display.css">
+</head>
+<body>
+    <h1>User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Date of Birth</th>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>City</th>
+                <th>Date of joining</th>
+                <th>Qualification</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="user-list">
+        </tbody>
+    </table>
+
+    <script>
+        // function to create a row in the user list table
+        function createUserRow(user) {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.dob}</td>
+                <td>${user.address1}</td>
+                <td>${user.address2}</td>
+                <td>${user.city}</td>
+                <td>${user.state}</td>
+                <td>${user.zip}</td>
+                <td>${user.phone}</td>
+                <td>${user.email}</td>
+                <td>
+                    <button class="delete-button" data-user-id="${user.id}">Delete</button>
+                </td>
+            `;
+            return row;
+        }
+
+        // function to refresh the user list from the server
+        async function refreshUserList() {
+            const response = await fetch("http://localhost:3000/users");
+            const users = await response.json();
+            const userList = document.getElementById("user-list");
+            userList.innerHTML = "";
+            users.forEach(user => {
+                const row = createUserRow(user);
+                userList.appendChild(row);
+            });
+
+            // add event listener to each delete button
+            const deleteButtons = document.querySelectorAll(".delete-button");
+            deleteButtons.forEach(button => {
+                button.addEventListener("click", async () => {
+                    const userId = button.dataset.userId;
+                    const confirmed = confirm(`Are you sure you want to delete user with ID ${userId}?`);
+                    if (confirmed) {
+                        const response = await fetch(`http://localhost:3000/delete/${userId}`, {
+                            method: "DELETE"
+                        });
+                        const result = await response.json();
+                        alert(result);
+                        refreshUserList();
+                    }
+                });
+            });
+        }
+
+        // initial load of user list
+        refreshUserList();
+    </script>
+</body>
+</html>
+

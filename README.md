@@ -1,1 +1,1 @@
-# employee-details
+# student registration page
